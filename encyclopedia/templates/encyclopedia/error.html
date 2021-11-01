@@ -1,0 +1,12 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia: New Word
+{% endblock %}
+
+{% block body %}
+    <h3>{{ message }}</h1>
+
+    <a href="{% url 'index' %}">Home</a>
+
+{% endblock %}

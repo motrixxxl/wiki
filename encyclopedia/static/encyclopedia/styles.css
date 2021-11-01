@@ -36,3 +36,13 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+.content-field {
+    width: 97%;
+    height: auto;
+    margin: 20px 0 10px 0;
+}
+
+.title-field {
+    margin: 20px 0 10px 0;
+}

@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia: New Word
+{% endblock %}
+
+{% block body %}
+    <h1>Add New Word</h1>
+
+    <form action="{% url 'add' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <div class="title-field"><input type="text" value="{{ title }}" placeholder="Input new word" name="title"></div>
+        <div class="content-field"><textarea placeholder="Describe word here..." name="content"></textarea></div>
+        <input type="submit" value="Add">
+    </form>
+
+    <a href="{% url 'index' %}">Cancel</a>
+
+{% endblock %}
