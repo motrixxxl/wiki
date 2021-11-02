@@ -9,7 +9,8 @@
 <!--        {% autoescape off %}-->
         {{ content|safe }}
 <!--        {% endautoescape %}-->
+<a href="{% url 'edit' title %}">Edit</a>
     </div>
-    <a href="{% url 'edit' title %}">Edit</a>
+
 
 {% endblock %}

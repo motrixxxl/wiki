@@ -13,8 +13,9 @@ h1 {
 }
 
 textarea {
-    height: 90vh;
-    width: 80%;
+    min-height: 200px;
+    width: 100%;
+    padding: 10px;
 }
 
 .main {
@@ -29,8 +30,10 @@ textarea {
 
 .sidebar {
     background-color: #f0f0f0;
-    height: 100vh;
+    height: auto;
+    width: auto;
     padding: 20px;
+    min-height: 200px;
 }
 
 .sidebar h2 {
@@ -38,11 +41,24 @@ textarea {
 }
 
 .content-field {
-    width: 97%;
+    width: 100%;
     height: auto;
     margin: 20px 0 10px 0;
 }
 
 .title-field {
     margin: 20px 0 10px 0;
+}
+
+.row {
+    margin: 0;
+}
+
+.search-div {
+    width: 100%;
+    display: inline-flex;
+}
+
+.search-go {
+    margin: 0 0 0 10px;
 }
