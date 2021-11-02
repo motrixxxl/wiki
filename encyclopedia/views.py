@@ -1,5 +1,7 @@
 import markdown
 
+from django.core.files.storage import default_storage
+
 from django import forms
 
 from random import randint
@@ -27,7 +29,18 @@ def article(request, title):
     })
 
 def search(request):
-    return HttpResponseRedirect(f"/wiki/{request.POST['q']}")
+    if request.method == 'POST':
+        filename = f"entries/{request.POST['q']}.md"
+        if default_storage.exists(filename):
+            return HttpResponseRedirect(f"/wiki/{request.POST['q']}")
+        else:
+            names = util.list_entries()
+            entries = [i for i in names if request.POST['q'] in i]
+            return render(request, "encyclopedia/search.html", {
+                "entries": entries
+            })
+    else:
+        return HttpResponseRedirect(reverse("index"))
 
 def random(request):
     entries = util.list_entries()
@@ -38,11 +51,13 @@ def add(request):
     if request.method == 'POST':
         title = request.POST['title'].strip()
         content = request.POST['content'].strip()
-        if not util.add_entry(title, f"# {title}\n\n{content}"):
+        filename = f"entries/{title}.md"
+        if default_storage.exists(filename):
             return render(request, "encyclopedia/error.html", {
                 "message": "Not saved - word exists"
             })
         else:
+            util.add_entry(title, f"# {title}\n\n{content}")
             return HttpResponseRedirect(f"/wiki/{title}")
     else:
         return render(request, "encyclopedia/add.html")
