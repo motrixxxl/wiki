@@ -21,8 +21,7 @@ def index(request):
 
 def article(request, title):
     article = util.get_entry(title)
-    content = article.split("\n", 1)
-    html = markdown.markdown(content[1])
+    html = markdown.markdown(article)
     return render(request, "encyclopedia/article.html", {
         "content": html,
         "title": title,
