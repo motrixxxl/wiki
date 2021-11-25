@@ -50,6 +50,12 @@ def add(request):
     if request.method == 'POST':
         title = request.POST['title'].strip()
         content = request.POST['content'].strip()
+        if len(title) == 0:
+            return render(request, "encyclopedia/add.html", {
+                'title': title,
+                'content': content,
+                'error': "new word is required",
+            })
         filename = f"entries/{title}.md"
         if default_storage.exists(filename):
             return render(request, "encyclopedia/error.html", {
