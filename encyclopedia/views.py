@@ -72,5 +72,5 @@ def edit(request, title):
 def save(request):
     title = request.POST['title'].strip()
     content = request.POST['content'].strip()
-    util.save_entry(title, f"# {title}\n\n{content}")
+    util.add_entry(title, f"# {title}\n\n{content}")
     return HttpResponseRedirect(f"/wiki/{title}")
